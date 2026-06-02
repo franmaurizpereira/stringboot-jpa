@@ -14,7 +14,7 @@ import com.franmauriz.springboot.jpa.springboot_jpa.repositories.PersonRepositor
 public class SpringbootJpaApplication implements CommandLineRunner{
 
 	@Autowired
-	private PersonRepository repository;
+	public PersonRepository repository;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootJpaApplication.class, args);
 	}
