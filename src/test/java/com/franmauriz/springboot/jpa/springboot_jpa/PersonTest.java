@@ -36,4 +36,19 @@ public class PersonTest {
         assertEquals("Pepe", result.get().getName());
         verify(repo,times(1)).findById(1L);
     }
+
+    @Test
+    void shouldReturnPersonFromDBLanguage(){
+        when(repo.findById(1L)).thenReturn(Optional.of(person));
+
+        Optional<Person> result = personrApp.repository.findById(1L);
+
+        assertNotNull(result);
+        assertEquals("Python", result.get().getProgramLanguage());
+        verify(repo,times(1)).findById(1L);
+    }
 }
+
+
+
+
