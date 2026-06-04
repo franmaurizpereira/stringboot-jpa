@@ -37,7 +37,6 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 		System.out.print("Ingrese el lenguaje de programacion: ");
 		String program = scanner.nextLine();
 		scanner.close();
-
 		Person person = new Person(null,name, lastName, program);
 		Person personNew = repository.save(person);
 		repository.findById(personNew.getId()).ifPresent(System.out::println);
@@ -101,6 +100,17 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 			//repository.findByName("Andres").ifPresent(System.out::println);
 			repository.findByNameContaining("Pe").ifPresent(System.out::println);
 			//persons.stream().forEach(person -> System.out.println(person));
+	}
+
+	@Transactional
+	public void delete(){
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Escribe el ID de la persona que quieres eliminar: ");
+		Long Id = scanner.nextLong();
+		Optional<Person> optionalPerson = repository.findById(Id);
+		optionalPerson.ifPresentOrElse(person -> repository.delete(person),
+			() -> System.out.println("El id no existe en la base de datos"));
+		scanner.close();
 	}
 
 }
