@@ -11,6 +11,17 @@ import java.util.Optional;
 
 public interface PersonRepository extends CrudRepository<Person,Long>{
     
+    @Query("select p from Person p order by p.name")
+    List<Person> OrdeByname();
+    @Query("select p from Person p where p.id between 2 and 6")
+    List<Person> findBetween();
+
+    @Query("select p.name, p.lastName from Person p where p.name like %?1%")
+    List<String> findLikeNames(String comodin);
+
+    @Query("select concat(upper(p.name),' ',upper(p.lastName)) from Person p")
+    List<String> findAllConcatUppernames();
+
     @Query("select count(distinct(p.programLanguage)) from Person p")
     List<String> findAllCountprogramLanguages();
 

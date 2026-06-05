@@ -40,7 +40,25 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 		programLanguages.forEach(System.out::println);
 		System.out.println("-".repeat(60));
 		List<String> countProgramLanguages = repository.findAllCountprogramLanguages();
+		System.out.print("Total lenguajes de programacion: ");
 		countProgramLanguages.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		List<String> concatUppernames = repository.findAllConcatUppernames();
+		System.out.print("Nombre concatenado y en mayus: ");
+		concatUppernames.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		List<String> likeNames = repository.findLikeNames("Ma");
+		System.out.println("Buscar nombre por comodin: ");
+		likeNames.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		List<Person> betweenId = repository.findBetween();
+		System.out.println("Id entre: ");
+		betweenId.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		System.out.println("Ordenar por nombres: ");
+		List<Person> ordrName = repository.OrdeByname();
+		System.out.println("Id entre: ");
+		ordrName.forEach(System.out::println);
 	}
 
 	@Transactional(readOnly = true)
