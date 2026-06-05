@@ -9,6 +9,19 @@ import java.util.Optional;
 
 
 public interface PersonRepository extends CrudRepository<Person,Long>{
+
+    @Query("select p.id, p.name, p.lastName, p.programLanguage from Person p")
+    List<Object[]> getPersonDataList();
+
+    @Query("select p.id, p.name, p.lastName, p.programLanguage from Person p where p.id = ?1")
+    Object getPersonDataListById(Long id);
+
+    @Query("select p.name from Person p where p.id =?1")
+    String getNameById(Long id);
+
+    @Query("select concat(p.name,' ',p.lastName) from Person p where p.id =?1")
+    String getFullNameById(Long id);
+
     @Query("select p from Person p where p.id = ?1")
     Optional<Person> findOne(Long id);
 

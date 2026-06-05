@@ -24,7 +24,27 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		update();
+		consultas();
+	}
+
+	@Transactional(readOnly = true)
+	public void consultas(){
+		Scanner scanner = new Scanner(System.in);
+		String txt = "Escribe el Id de la persona que quieres conocer su nombre: ";
+		System.out.print(txt);
+		Long id = scanner.nextLong();
+		scanner.close();
+		System.out.println("_".repeat(txt.length()));
+		Object[] personReg = (Object[]) repository.getPersonDataListById(id);
+		System.out.println("Id: " + personReg[0] +" Name: " + personReg[1] + " " + personReg[2] + " Program: " + personReg[3]);
+		System.out.println("_".repeat(txt.length()));
+		List<Object[]> regs = repository.getPersonDataList();
+		regs.stream().forEach(personList -> System.out.println("Id: " + personList[0] +" Name: " + personList[1] + " " + personList[2] + " Program: " + personList[3]));
+		System.out.println("_".repeat(txt.length()));
+		System.out.println(repository.getNameById(id));
+		System.out.println("_".repeat(txt.length()));
+		System.out.println(repository.getFullNameById(id));
+		System.out.println("_".repeat(txt.length()));
 	}
 
 	@Transactional
