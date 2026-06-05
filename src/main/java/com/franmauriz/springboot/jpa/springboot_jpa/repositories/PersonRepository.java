@@ -3,12 +3,25 @@ package com.franmauriz.springboot.jpa.springboot_jpa.repositories;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.franmauriz.springboot.jpa.springboot_jpa.DTO.PersonDto;
 import com.franmauriz.springboot.jpa.springboot_jpa.entities.Person;
 import java.util.List;
 import java.util.Optional;
 
 
 public interface PersonRepository extends CrudRepository<Person,Long>{
+    
+    @Query("select count(distinct(p.programLanguage)) from Person p")
+    List<String> findAllCountprogramLanguages();
+
+    @Query("select distinct(p.programLanguage) from Person p")
+    List<String> findAllprogramLanguages();
+
+    @Query("select distinct(p.name) from Person p")
+    List<String> findAllNames();
+
+    @Query("select new com.franmauriz.springboot.jpa.springboot_jpa.DTO.PersonDto(p.name,p.lastName) from Person p")
+    List<PersonDto> findAllPersonDtoPersonalized();
 
     @Query("select p.id, p.name, p.lastName, p.programLanguage from Person p")
     List<Object[]> getPersonDataList();

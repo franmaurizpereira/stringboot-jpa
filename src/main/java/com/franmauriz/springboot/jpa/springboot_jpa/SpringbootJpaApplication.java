@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.franmauriz.springboot.jpa.springboot_jpa.DTO.PersonDto;
 import com.franmauriz.springboot.jpa.springboot_jpa.entities.Person;
 import com.franmauriz.springboot.jpa.springboot_jpa.repositories.PersonRepository;
 
@@ -24,7 +25,22 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		consultas();
+		consultas2();
+	}
+
+	@Transactional(readOnly = true)
+	public void consultas2(){
+		List<PersonDto> personDto = repository.findAllPersonDtoPersonalized();
+		personDto.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		List<String> names = repository.findAllNames();
+		names.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		List<String> programLanguages = repository.findAllprogramLanguages();
+		programLanguages.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		List<String> countProgramLanguages = repository.findAllCountprogramLanguages();
+		countProgramLanguages.forEach(System.out::println);
 	}
 
 	@Transactional(readOnly = true)
