@@ -59,6 +59,27 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 		List<Person> ordrName = repository.OrdeByname();
 		System.out.println("Id entre: ");
 		ordrName.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		System.out.println("Buscar por Id por metodo: ");
+		List<Person> byId = repository.findByIdBetween(2L, 4L);
+		byId.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		System.out.println("Buscar por nombre por metodo: ");
+		List<Person> byName = repository.findByNameBetween("A", "G");
+		byName.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		System.out.println("Buscar por nombre por Id y ordenar por nombre: ");
+		List<Person> byidOrderName = repository.findByIdBetweenOrderByName(2L, 7L);
+		byidOrderName.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		System.out.println("Buscar por nombre por nombre y ordenar por nombre: ");
+		List<Person> byidOrderNameId = repository.findByIdBetweenOrderByNameDescIdDesc(2L, 7L);
+		byidOrderNameId.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		System.out.println("Todas las personas ordenadas por nombre: ");
+		List<Person> byidOrderNameLastname = repository.findAllByOrderByName();
+		byidOrderNameLastname.forEach(System.out::println);
+
 	}
 
 	@Transactional(readOnly = true)
