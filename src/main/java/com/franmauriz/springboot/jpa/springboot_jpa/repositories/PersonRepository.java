@@ -11,6 +11,30 @@ import java.util.Optional;
 
 public interface PersonRepository extends CrudRepository<Person,Long>{
 
+    @Query("select sum(p.id) from Person p")
+    Long sumId();
+
+    @Query("select p.name,length(p.name) from Person p  group by p.name having max(length(p.name)) = (select max(length(c.name)) from Person c)")
+    List<Object[]> maxTamName();
+    
+    @Query("select p.name,length(p.name) from Person p  group by p.name having min(length(p.name)) = (select min(length(c.name)) from Person c)")
+    List<Object[]> minTamName();
+
+    @Query("select p.name, length(p.name) from Person p")
+    List<Object[]> tamNamelPerson();
+
+    @Query("select count(p) from Person p")
+    Long totalPerson();
+
+    @Query("select min(p.id) from Person p")
+    Long minIdPerson();
+
+    @Query("select max(p.id) from Person p")
+    Long maxIdPerson();
+
+    @Query("select avg(p.id) from Person p")
+    Long avgIdPerson();
+
     List<Person> findAllByOrderByName();
 
     List<Person> findByIdBetweenOrderByNameDescIdDesc(Long Id1, Long Id2);

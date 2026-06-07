@@ -79,6 +79,50 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 		System.out.println("Todas las personas ordenadas por nombre: ");
 		List<Person> byidOrderNameLastname = repository.findAllByOrderByName();
 		byidOrderNameLastname.forEach(System.out::println);
+		System.out.println("-".repeat(60));
+		System.out.println("Número Total de Personas: ");
+		Long totalPerson = repository.totalPerson();
+		System.out.println("Número total de personas es: " + totalPerson);
+		System.out.println("-".repeat(60));
+		System.out.println("Minimo ID de Personas: ");
+		Long miniDPerson = repository.minIdPerson();
+		System.out.println("Número Id minimo de personas es: " + miniDPerson);
+		System.out.println("-".repeat(60));
+		System.out.println("Máximo ID de Personas: ");
+		Long maxiDPerson = repository.maxIdPerson();
+		System.out.println("Número Id máximo de personas es: " + maxiDPerson);
+		System.out.println("-".repeat(60));
+		System.out.println("Avg ID de Personas: ");
+		Long avgiDPerson = repository.avgIdPerson();
+		System.out.println("Número Id avg de personas es: " + avgiDPerson);
+		System.out.println("-".repeat(60));
+		System.out.println("Largo nombre: ");
+		List<Object[]> longNamePerson = repository.tamNamelPerson();
+		longNamePerson.forEach(p -> {
+			String nombre = (String) p[0];
+			Integer lenght = (Integer) p[1];
+			System.out.println("nombre: " + nombre + " lanrgo: " + lenght);
+		});
+		System.out.println("-".repeat(60));
+		System.out.println("minimo Largo nombre: ");
+		List<Object[]> minlongNamePerson = repository.minTamName();
+		minlongNamePerson.forEach(p -> {
+			String name = (String) p[0];
+			Integer min = (Integer) p[1];
+			System.out.println("nombre: " + name + " lanrgo: " + min);
+		});
+		System.out.println("-".repeat(60));
+		System.out.println("maximo Largo nombre: ");
+		List<Object[]> maxlongNamePerson = repository.maxTamName();
+		maxlongNamePerson.forEach(p -> {
+			String name = (String) p[0];
+			Integer min = (Integer) p[1];
+			System.out.println("nombre: " + name + " lanrgo: " + min);
+		});
+		System.out.println("-".repeat(60));
+		System.out.println("Suma Total id: ");
+		Long sumId= repository.sumId();
+		System.out.println("Suma total de los id: " + sumId);
 
 	}
 
