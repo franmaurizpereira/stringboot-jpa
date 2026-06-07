@@ -26,7 +26,7 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		consultas2();
+		update();
 	}
 
 	@Transactional(readOnly = true)
