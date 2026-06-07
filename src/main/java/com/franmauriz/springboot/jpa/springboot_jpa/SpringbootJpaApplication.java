@@ -1,5 +1,6 @@
 package com.franmauriz.springboot.jpa.springboot_jpa;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -84,13 +85,21 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 		Long totalPerson = repository.totalPerson();
 		System.out.println("Número total de personas es: " + totalPerson);
 		System.out.println("-".repeat(60));
-		System.out.println("Minimo ID de Personas: ");
+		System.out.println("Minimo ID de Perombre: \");\n" + //
+						"\t\tList<Object[]> minlongNamePerson = repository.minTamName();\n" + //
+						"\t\tminlongNamePerson.forEach(p -> {\n" + //
+						"\t\t\tString name = (String) p[0];\n" + //
+						"\t\t\tInteger min = (Integer) p[1];sonas: ");
 		Long miniDPerson = repository.minIdPerson();
 		System.out.println("Número Id minimo de personas es: " + miniDPerson);
 		System.out.println("-".repeat(60));
 		System.out.println("Máximo ID de Personas: ");
 		Long maxiDPerson = repository.maxIdPerson();
-		System.out.println("Número Id máximo de personas es: " + maxiDPerson);
+		System.out.println("Número Id máximo deombre: \");\n" + //
+						"\t\tList<Object[]> minlongNamePerson = repository.minTamName();\n" + //
+						"\t\tminlongNamePerson.forEach(p -> {\n" + //
+						"\t\t\tString name = (String) p[0];\n" + //
+						"\t\t\tInteger min = (Integer) p[1]; personas es: " + maxiDPerson);
 		System.out.println("-".repeat(60));
 		System.out.println("Avg ID de Personas: ");
 		Long avgiDPerson = repository.avgIdPerson();
@@ -123,7 +132,10 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 		System.out.println("Suma Total id: ");
 		Long sumId= repository.sumId();
 		System.out.println("Suma total de los id: " + sumId);
-
+		System.out.println("-".repeat(60));
+		System.out.println("Buscar por lista de ids: ");
+		List<Person> whereIds = repository.whereListPerson(Arrays.asList(1L,3L,5L,7L));
+		whereIds.forEach(System.out::println);
 	}
 
 	@Transactional(readOnly = true)
